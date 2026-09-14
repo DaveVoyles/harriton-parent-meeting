@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>Harriton Boys Lacrosse — Parent Meeting</title>
+  <style>
+    :root {
+      --navy: #111111;
+      --navy-mid: #2a2a2a;
+      --green: #C8102E;
+      --green-soft: #fde8eb;
+      --green-mid: #f5c2c8;
+      --card: #ffffff;
+      --muted: #5c5c5c;
+      --border: #e0e0e0;
+      --bg: #f5f5f5;
+      --highlight: #fff5f6;
+      --highlight-border: #f0a8b0;
+      --accent: #C8102E;
+      --chip-bg: #f0f0f0;
+      --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--navy);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(145deg, #111111 0%, #2a2a2a 50%, #7a0a1a 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 32px 28px 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    }
+
+    /* Subtle grid texture */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,16,46,0.4) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero .badge {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 1.7rem;
+      font-weight: 800;
+      line-height: 1.22;
+      letter-spacing: -0.02em;
+    }
+
+    .hero .subtitle {
+      margin: 0 0 16px;
+      font-size: 1.05rem;
+      opacity: 0.92;
+      font-weight: 400;
+    }
+
+    .hero .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero .hero-chips span {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--green);
+      border-radius: 14px;
+      padding: 24px 24px 20px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-soft);
+      transition: box-shadow 0.15s ease;
+    }
+
+    .card.highlight {
+      background: var(--highlight);
+      border-color: var(--highlight-border);
+      border-left-color: #C8102E;
+      border-width: 1px;
+      border-left-width: 4px;
+      box-shadow: 0 4px 16px rgba(200, 16, 46, 0.12);
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 1.18rem;
+      font-weight: 750;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Icon circle with letter or emoji */
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 0.95rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .card.highlight .icon {
+      background: #fde8eb;
+      color: #C8102E;
+    }
+
+    /* Bullet items with detail sentences */
+    .items {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .items > li {
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #eef2f6;
+    }
+
+    .items > li:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .items .lead {
+      display: block;
+      font-weight: 650;
+      color: var(--navy);
+      margin-bottom: 3px;
+      line-height: 1.4;
+    }
+
+    .items .detail {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .card > p {
+      margin: 0 0 12px;
+      color: var(--navy);
+    }
+
+    .card > p:last-child { margin-bottom: 0; }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Tip / callout chips */
+    .tip {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: var(--green-soft);
+      border-radius: 10px;
+      border: 1px solid var(--green-mid);
+      font-size: 0.9rem;
+      color: var(--navy);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.45;
+    }
+
+    .tip .tip-icon {
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+
+    .tip strong { font-weight: 700; }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .chip {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 650;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      color: var(--navy-mid);
+      border: 1px solid var(--border);
+    }
+
+    .chip.green {
+      background: var(--green-soft);
+      color: var(--green);
+      border-color: var(--green-mid);
+    }
+
+    /* Placeholder box */
+    .placeholder {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 2px dashed var(--green);
+      border-radius: 10px;
+      background: var(--green-soft);
+      text-align: center;
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 0.95rem;
+    }
+
+    .placeholder span {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* ── Spring timeline ── */
+    .timeline {
+      margin: 18px 0 10px;
+      padding: 0;
+      list-style: none;
+      position: relative;
+    }
+
+    .timeline .num {
+      display: none;
+    }
+
+    @media (min-width: 560px) {
+      .timeline {
+        display: flex;
+        justify-content: space-between;
+        gap: 6px;
+        padding-top: 4px;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: 7%;
+        right: 7%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--green), #111111, #ffffff);
+        border-radius: 2px;
+        z-index: 0;
+      }
+
+      .timeline li {
+        flex: 1;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        padding: 0 3px;
+      }
+
+      .timeline .marker {
+        width: 36px;
+        height: 36px;
+        background: var(--green);
+        border: 3px solid #fff;
+        box-shadow: 0 0 0 2px var(--green), 0 2px 6px rgba(0,0,0,0.15);
+        border-radius: 50%;
+        margin: 0 auto 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 800;
+      }
+
+      .timeline .num {
+        display: block;
+      }
+
+      .timeline .date {
+        font-weight: 800;
+        font-size: 0.82rem;
+        color: var(--navy);
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .timeline .label {
+        font-size: 0.76rem;
+        color: var(--muted);
+        line-height: 1.35;
+        display: block;
+      }
+
+      .timeline .tl-detail {
+        display: none;
+      }
+    }
+
+    @media (max-width: 559px) {
+      .timeline {
+        border-left: 3px solid var(--green);
+        margin-left: 10px;
+        padding-left: 20px;
+      }
+
+      .timeline li {
+        position: relative;
+        margin-bottom: 18px;
+        padding-bottom: 0;
+      }
+
+      .timeline li:last-child { margin-bottom: 0; }
+
+      .timeline .marker {
+        position: absolute;
+        left: -31px;
+        top: 2px;
+        width: 22px;
+        height: 22px;
+        background: var(--green);
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 2px var(--green);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 0.65rem;
+        font-weight: 800;
+      }
+
+      .timeline .num { display: block; }
+
+      .timeline .date {
+        font-weight: 800;
+        font-size: 0.95rem;
+        color: var(--navy);
+        display: block;
+      }
+
+      .timeline .label {
+        font-size: 0.9rem;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .timeline .tl-detail {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-top: 2px;
+        line-height: 1.4;
+      }
+    }
+
+    .schedule-intro {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 12px;
+      padding: 22px 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer strong { color: var(--navy); }
+
+    /* Print */
+    @media print {
+      body { background: #fff; }
+      .wrap { padding: 0; max-width: 100%; }
+      .hero {
+        box-shadow: none;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .hero::before, .hero::after { display: none; }
+      .card {
+        box-shadow: none;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .card.highlight {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .icon, .tip, .timeline .marker {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      a { text-decoration: none; }
+      footer { border-top: 1px solid #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="badge">Parent Meeting</div>
+      <h1>Harriton Boys Lacrosse</h1>
+      <p class="subtitle">Season outlook with Coach Dave Voyles — a warm welcome to families</p>
+      <div class="hero-chips" aria-hidden="true">
+        <span>Fall · Winter · Spring 2027</span>
+        <span>Parents welcome</span>
+        <span>Building together</span>
+      </div>
+    </header>
+
+    <!-- About Coach -->
+    <section class="card">
+      <h2><span class="icon" aria-hidden="true">👋</span> About Coach Dave</h2>
+      <ul class="items">
+        <li>
+          <span class="lead">Only coach this year — looking for parent help and additional coaches</span>
+          <span class="detail">We’re building the program with the people in this room. Extra hands on the field and behind the scenes make a real difference for the boys.</span>
+        </li>
+        <li>
+          <span class="lead">Fun, but tough and fair</span>
+          <span class="detail">Practices and games should feel enjoyable — and every player will be held to clear, consistent standards.</span>
+        </li>
+        <li>
+          <span class="lead">May mean merging JV and Varsity into one program</span>
+          <span class="detail">Depending on numbers and coaching support, we may run as one combined group so everyone gets better coaching and more meaningful reps.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Expectations -->
+    <section class="card">
+      <h2><span class="icon" aria-hidden="true">✓</span> Player expectations</h2>
+      <ul class="items">
+        <li>
+          <span class="lead">Every player must have their own equipment</span>
+          <span class="detail">Stick, helmet, pads, gloves, and mouthguard — ready for practice and games. <a href="https://sidelineswap.com" target="_blank" rel="noopener noreferrer">SidelineSwap</a> is a fantastic place to buy gear at an affordable price — that's where Coach Dave gets his stuff. Ask if you need help finding anything.</span>
+        </li>
+        <li>
+          <span class="lead">Every player must be able to catch and throw</span>
+          <span class="detail">Basic stick skills are the foundation. Wall ball and partner catch at home go a long way. If you cannot catch &amp; throw, that will be your dedicated practice until you can.</span>
+        </li>
+        <li>
+          <span class="lead">Every player must be in shape</span>
+          <span class="detail">Lacrosse is a running game. Showing up fit helps your son contribute safely and confidently from day one. We will be in better shape than any other team in Central League. That’s our strength.</span>
+        </li>
+        <li>
+          <span class="lead">Other spring sports</span>
+          <span class="detail">Communicate with me if you plan on playing an additional sport in the spring. Be very clear about which is your priority. I encourage players to play multiple sports — however, it’s not fair to teammates if we are investing in you and you are not investing in the team.</span>
+        </li>
+        <li>
+          <span class="lead">Central League is among the best in the country</span>
+          <span class="detail">We get as much out of our practices as we put in. The local competition is playing all year, every year, from the time they are in kindergarten. The advantage we have is we will be in better shape. I reward hustle.</span>
+        </li>
+      </ul>
+    </section>
+
+
+    <!-- Off Season -->
+    <section class="card">
+      <h2><span class="icon" aria-hidden="true">🍂</span> Off Season</h2>
+      <ul class="items">
+        <li>
+          <span class="lead">Fall practices: Saturdays, 10:00 AM–12:00 PM, at Strath Haven HS</span>
+          <span class="detail">Coach Dave is <strong>not</strong> running these — the Strath Haven coach is. Sessions include players from several other schools. Great for skills and chemistry before winter and spring; please put them on the family calendar.</span>
+        </li>
+        <li>
+          <span class="lead">Players who will be <strong>18 this year</strong> can sign up for Ulax</span>
+          <span class="detail">Ulax plays in the winter at Seelyard Sports in Conshohocken — another strong option for older players who want extra reps.</span>
+        </li>
+      </ul>
+      <div class="chip-row">
+        <span class="chip">Sat 10–12</span>
+        <span class="chip green">Strath Haven coach</span>
+        <span class="chip">Multi-school</span>
+        <span class="chip green">Ulax @ Seelyard</span>
+      </div>
+    </section>
+
+    <!-- Captains -->
+    <section class="card">
+      <h2><span class="icon" aria-hidden="true">★</span> Captains</h2>
+      <p>Players nominate and select <strong>3 captains + 1 non-senior</strong>.</p>
+      <ul class="items">
+        <li>
+          <span class="lead">Represent the team, communicate with Coach Dave, and take on delegated tasks</span>
+          <span class="detail">Captains are the four people who best speak for the group — on the field, in the locker room, and in conversations with the coach.</span>
+        </li>
+        <li>
+          <span class="lead">The non-senior builds leadership for next year’s class</span>
+          <span class="detail">That seat is intentional: it keeps continuity when seniors graduate and gives younger leaders real responsibility this season.</span>
+        </li>
+      </ul>
+      <div class="placeholder">
+        <strong>For players:</strong> <a href="https://docs.google.com/forms/d/e/1FAIpQLSfeWX0OtYst_Ul53Gu4PT_PDdYyAYiKowFS-XkYyHiaU_R8HQ/viewform" target="_blank" rel="noopener noreferrer">Open captain nomination form</a>
+        <span class="detail" style="display:block;margin-top:0.4rem">Players nominate captains here. No parent email required. Useful for parents to see how the vote works.</span>
+      </div>
+      <div class="chip-row">
+        <span class="chip green">3 captains</span>
+        <span class="chip green">+ 1 non-senior</span>
+        <span class="chip">Player-nominated</span>
+      </div>
+    </section>
+
+    <!-- Parent help -->
+    <section class="card">
+      <h2><span class="icon" aria-hidden="true">🤝</span> Parent help</h2>
+      <ul class="items">
+        <li>
+          <span class="lead"><strong>Jennifer MacLeod</strong> is the treasurer / lead parent coordinator</span>
+          <span class="detail">She’s the go-to for team finances and coordinating parent support. Please introduce yourself and thank her when you can.</span>
+        </li>
+        <li>
+          <span class="lead">Looking for more parents to help coordinate</span>
+          <span class="detail">Sign-ups, events, snacks, travel logistics — small roles add up. If you can spare a little time, we’d love your help.</span>
+        </li>
+      </ul>
+      <div class="tip">
+        <span class="tip-icon" aria-hidden="true">🙌</span>
+        <span><strong>Soft ask:</strong> No pressure — even one task this season makes a difference. Talk to Jennifer or Coach Dave after the meeting if you’re interested.</span>
+      </div>
+    </section>
+
+    <!-- Winter -->
+    <section class="card">
+      <h2><span class="icon" aria-hidden="true">❄</span> Winter league</h2>
+      <ul class="items">
+        <li>
+          <span class="lead">Friday nights: <strong>45m training</strong> + <strong>45m game</strong></span>
+          <span class="detail">A steady bridge into spring — great for development, fitness, and team chemistry when outdoor season isn’t fully underway yet.</span>
+        </li>
+      </ul>
+      <div class="chip-row">
+        <span class="chip">Friday nights</span>
+        <span class="chip green">45m training</span>
+        <span class="chip green">45m game</span>
+      </div>
+    </section>
+
+    <!-- Spring -->
+    <section class="card highlight">
+      <h2><span class="icon" aria-hidden="true">📅</span> Spring 2027 schedule</h2>
+      <p class="schedule-intro">Season starts one week later than usual — please mark these dates on the family calendar.</p>
+
+      <ol class="timeline" aria-label="Spring 2027 key dates">
+        <li>
+          <div class="marker" aria-hidden="true"><span class="num">1</span></div>
+          <span class="date">Mon, Mar 8</span>
+          <span class="label">Season starts</span>
+          <span class="tl-detail">Official start of the spring season.</span>
+        </li>
+        <li>
+          <div class="marker" aria-hidden="true"><span class="num">2</span></div>
+          <span class="date">5 days / week</span>
+          <span class="label">Practice</span>
+          <span class="tl-detail">Expect practice five days a week once the season is underway.</span>
+        </li>
+        <li>
+          <div class="marker" aria-hidden="true"><span class="num">3</span></div>
+          <span class="date">Sat, Mar 13</span>
+          <span class="label">Scrimmage</span>
+          <span class="tl-detail">First live look against another program.</span>
+        </li>
+        <li>
+          <div class="marker" aria-hidden="true"><span class="num">4</span></div>
+          <span class="date">Fri, Mar 19</span>
+          <span class="label">First contest</span>
+          <span class="tl-detail">Opening game of the season.</span>
+        </li>
+        <li>
+          <div class="marker" aria-hidden="true"><span class="num">5</span></div>
+          <span class="date">Mar 20–28</span>
+          <span class="label">Spring break</span>
+          <span class="tl-detail">Break follows right after the first contest — plan travel carefully.</span>
+        </li>
+      </ol>
+
+    </section>
+
+    <!-- Volunteering -->
+    <section class="card">
+      <h2><span class="icon" aria-hidden="true">💚</span> Leadership off the field</h2>
+      <ul class="items">
+        <li>
+          <span class="lead">Making a positive impact outside school matters for leaders</span>
+          <span class="detail">We want captains and teammates who give back — character on and off the field.</span>
+        </li>
+        <li>
+          <span class="lead">ELDERnet food pantry</span>
+          <span class="detail">A local way to serve. Optional but valued — learn more at
+            <a href="https://eldernet.org/food-pantry/" target="_blank" rel="noopener noreferrer">eldernet.org/food-pantry</a>.
+          </span>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      Questions? Reach <strong>Coach Dave Voyles</strong> or <strong>Jennifer MacLeod</strong>.<br />
+      <span style="font-size:0.88rem;opacity:0.85;">Thanks for being part of Harriton Boys Lacrosse.</span>
+    </footer>
+  </div>
+</body>
+</html>
